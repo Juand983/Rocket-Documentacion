@@ -46,6 +46,7 @@ schema_migrations: Control de versiones de la base de datos (Knex/Sequelize/Cust
 3. Diagrama Entidad-Relación Detallado (ERD)
 A continuación se presenta el modelo relacional detallado con las principales tablas, sus atributos clave (PK/FK) y tipos de datos esenciales.
 
+!dbapollo
 
 4. Detalles de Integridad
 Identificadores: Se utiliza UUID v4 en todas las tablas transaccionales para seguridad y escalabilidad.
