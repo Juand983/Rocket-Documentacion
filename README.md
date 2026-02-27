@@ -65,7 +65,7 @@ Prioridad
 Riesgo
 Impacto
 Para clasificar un hallazgo, siga el siguiente diagrama de flujo
-!Normalización de hallazgos
+assets/Normalización de hallazgos.png
 
 Fuentes
 ISO 19011:2018 – Guidelines for auditing management systems.
