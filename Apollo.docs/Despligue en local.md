@@ -4,34 +4,33 @@ Para levantar el sistema completo, se deben iniciar los servicios en el siguient
 Requisitos Previos
 Docker y Docker Compose
 Make (opcional, pero recomendado)
-
 1. Base de Datos (apollo-service-db)
-   El servicio de base de datos PostgreSQL debe iniciarse primero ya que define la red compartida apollo_network.
-   cd apollo-service-db
-   make upi       # Levanta el contenedor en segundo plano (detached)
-   make migrate   # Ejecuta las migraciones para crear las tablas
-   Verificación:
-   El contenedor apollo-db debe estar corriendo (puerto 5432).
-   Debe existir la red apollo_network.
+El servicio de base de datos PostgreSQL debe iniciarse primero ya que define la red compartida apollo_network.
+cd apollo-service-db
+make upi       # Levanta el contenedor en segundo plano (detached)
+make migrate   # Ejecuta las migraciones para crear las tablas
+Verificación:
+El contenedor apollo-db debe estar corriendo (puerto 5432).
+Debe existir la red apollo_network.
 2. Backend API (apollo-service-api)
-   Configuración Previa (.env): Asegúrate de que el archivo .env apunte al nombre del contenedor de la base de datos y no a una IP remota.
-   DB_HOST=apollo-db
-   DB_NAME=apollo_db
-   POSTGRES_DB=apollo_db
-   Api Service (apollo-service-api)
-   Configuración Previa (src/app.js):
-   // Configuraciones de la app
-   const allowedOrigins = [
-   'http://localhost:4200',
-   'http://localhost:3000',
-   'http://localhost:4001',  //agregar puerto 4001
-   'https://apolloasesorias.com',
-   'https://www.apolloasesorias.com',
-   'https://qa.apolloasesorias.com',
-   'https://www.qa.apolloasesorias.com',
-   'https://api.apolloasesorias.com',
-   'https://api-qa.apolloasesorias.com'
-   ];
+Configuración Previa (.env): Asegúrate de que el archivo .env apunte al nombre del contenedor de la base de datos y no a una IP remota.
+DB_HOST=apollo-db
+DB_NAME=apollo_db
+POSTGRES_DB=apollo_db
+Api Service (apollo-service-api)
+Configuración Previa (src/app.js):
+// Configuraciones de la app
+const allowedOrigins = [
+  'http://localhost:4200',
+  'http://localhost:3000',
+  'http://localhost:4001',  //agregar puerto 4001
+  'https://apolloasesorias.com',
+  'https://www.apolloasesorias.com',
+  'https://qa.apolloasesorias.com',
+  'https://www.qa.apolloasesorias.com',
+  'https://api.apolloasesorias.com',
+  'https://api-qa.apolloasesorias.com'
+];
 
 Configuración Previa ultimas lineas de docker-compose.yml para agregar en la misma red docke (pegar desde la linea 60).
 networks:
@@ -44,18 +43,17 @@ apollo_network: #Se añade esta linea para agregar a network docker
 external: true #Se añade esta linea para agregar a network docker
 Ejecución: Es crítico usar docker compose up --build para asegurar que la API se conecte a la red correcta (apollo_network) y tenga los orígenes CORS actualizados.
 cd apollo-service-api
-
 # Asegura que el docker-compose.yml tenga 'networks: - apollo_network'
-
 docker-compose up -d --build
 Notas Importantes:
 La API corre en el puerto 4000.
-Logs importantes: docker logs -f apollo-api 3. Frontend Web App (apollo-service-app)
+Logs importantes: docker logs -f apollo-api
+3. Frontend Web App (apollo-service-app)
 Configuración Previa (src/environments/environment.ts): El frontend debe apuntar a la API local, no a QA.
 **export** **const** environment = {
 production: **false**,
-apiUrl: "http://localhost:4000/api", _// Asegurar este valor_
-_// ..._
+apiUrl: "http://localhost:4000/api", // Asegurar este valor
+// ...
 };
 Ejecución:
 cd apollo-service-app
@@ -103,4 +101,4 @@ Tutor
 Email: tutor@apollo.com
 Contraseña: 123456
 Error de migración que impide el inicio de sesión:
-Al intentar ingresar al sistema con las credenciales, aparece un error de contraseña incorrecta. Esto se debe a un problema en la migración actual del sistema. Para probar el sistema, dirígete a , donde el sistema valida correctamente la contraseña.
+Al intentar ingresar al sistema con las credenciales, aparece un error de contraseña incorrecta. Esto se debe a un problema en la migración actual del sistema. Para probar el sistema, dirígete a  , donde el sistema valida correctamente la contraseña.
