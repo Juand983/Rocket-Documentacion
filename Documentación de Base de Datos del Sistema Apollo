@@ -1,0 +1,54 @@
+Documentación de Base de Datos del Sistema Apollo
+1. Resumen de Estructura
+El sistema cuenta con 35 tablas principales organizadas en el esquema public. No se detectaron schemas adicionales de negocio.
+Extensiones Activas
+uuid-ossp: Generación de IDs únicos.
+pgcrypto: Cifrado de columnas sensibles.
+pg_trgm: Optimización de búsquedas de texto.
+2. Tablas Principales por Módulo
+2.1 Módulo de Usuarios (Core)
+Tablas relacionadas con la gestión de cuentas y seguridad.
+users: Tabla maestra. Contiene credenciales (hash), estado y tokens de recuperación.
+PK: id (UUID)
+Índices clave: email, status_id.
+profile: Información extendida (Bio, foto, ubicación). Relación 1:1 con users.
+roles: Catálogo de roles (Admin, Tutor, Student).
+user_roles: Tabla pivote para asignar múltiples roles a un usuario.
+user_status: Catálogo de estados (Active, Banned, Pending).
+2.2 Módulo de Tutores
+Información específica para el rol de proveedor de servicios.
+tutor_profile: Datos profesionales (Tarifa hora, video presentación). Relación 1:1 con users.
+tutor_services: Servicios específicos ofertados (ej. “Clase de Matemáticas”).
+topics / subtopics: Categorización jerárquica de áreas de conocimiento.
+professional_topics: Relación de competencias del tutor con los temas.
+tutor_documents / tutor_certificates: Repositorio de evidencias profesionales (Diplomas, Cédula).
+2.3 Módulo de Agendamiento
+Gestión del tiempo y encuentros.
+availability: Bloques de tiempo disponibles configurados por el tutor.
+sessions: Registro central de la tutoría pactada.
+Campos clave: start_date, end_date, meeting_link, status_id.
+sessions_history: Bitácora de cambios de estado de la sesión (Auditoría).
+session_status: Catálogo de estados de sesión (Pending, Confirmed, Completed, Cancelled).
+2.4 Módulo Financiero
+Gestión de transacciones monetarias.
+payments: Registro de entradas de dinero (Pagos de estudiantes).
+Campos clave: amount, commission, transaction_id.
+invoices: Documentos de facturación generados.
+withdrawals: Solicitudes de retiro de fondos de los tutores.
+tutor_bank_details: Cuentas bancarias verificadas para desembolsos.
+currencies: Catálogo de monedas soportadas (COP, USD).
+2.5 Tablas de Sistema y Auditoría
+app_settings: Configuración dinámica (feature flags, porcentajes de comisión).
+audit_log: Registro de actividad general del sistema.
+deletion_audit_log: Registro específico de intentos de borrado de datos.
+notifications: Cola de notificaciones para usuarios.
+schema_migrations: Control de versiones de la base de datos (Knex/Sequelize/Custom).
+3. Diagrama Entidad-Relación Detallado (ERD)
+A continuación se presenta el modelo relacional detallado con las principales tablas, sus atributos clave (PK/FK) y tipos de datos esenciales.
+
+
+4. Detalles de Integridad
+Identificadores: Se utiliza UUID v4 en todas las tablas transaccionales para seguridad y escalabilidad.
+Foreign Keys: Integridad referencial fuerte (Restrict/Cascade) en todas las relaciones principales.
+Auditoría
+Campos created_at y updated_at presentes en el 100% de las tablas
