@@ -65,7 +65,9 @@ Prioridad
 Riesgo
 Impacto
 Para clasificar un hallazgo, siga el siguiente diagrama de flujo
+
 !Normalización de hallazgos
+
 Fuentes
 ISO 19011:2018 – Guidelines for auditing management systems.
 ISO/IEC/IEEE 24765:2017 – Systems and Software Engineering Vocabulary.
