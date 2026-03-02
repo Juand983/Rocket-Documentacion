@@ -6,6 +6,7 @@ Este documento detalla la arquitectura, componentes y tecnologías utilizadas en
 
 ## **1. Visión General de la Arquitectura**
 El sistema Apollo sigue una arquitectura de microservicios o servicios distribuidos, separando claramente la base de datos, el backend (API) y el frontend (App).
+<img width="5339" height="2878" alt="Image" src="https://github.com/user-attachments/assets/8c73be04-d0da-4b5d-b9f5-3e0d894ca4a8" />
 
 ---
 
