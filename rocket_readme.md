@@ -91,6 +91,7 @@ Todo hallazgo QA debe contener:
 - Impacto
 
 Para clasificar un hallazgo, siga el diagrama de flujo.
+<img width="6245" height="5850" alt="Image" src="https://github.com/user-attachments/assets/0de58dcd-4363-4d5e-bf6e-ae69be339e68" />
 
 ## **Fuentes**
 ISO 19011:2018 – Guidelines for auditing management systems.
