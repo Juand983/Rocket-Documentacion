@@ -71,7 +71,7 @@ Gestión de transacciones monetarias.
 ## **3. Diagrama Entidad-Relación Detallado (ERD)**
 A continuación se presenta el modelo relacional detallado con las principales tablas, sus atributos clave (PK/FK) y tipos de datos esenciales.
 
-*(Incluir imagen o diagrama generado en otro archivo si aplica)*
+!ERD.jpg
 
 ---
 
